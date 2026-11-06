@@ -72,8 +72,10 @@ dist/
 next-env.d.ts.bak
 
 # ------------------------------------------
-# 5. Database, Local Data & Dumps
+# 5. Database, Local Data & Media Storage
 # ------------------------------------------
+media-source/*
+!media-source/.gitkeep
 *.sqlite
 *.sqlite3
 *.db
