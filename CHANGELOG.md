@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - 2026-11-06
 
+### Phase 02: Architecture and Data Model
+
+#### Added
+- Authored `docs/ARCHITECTURE.md` establishing the architectural blueprint for the Next.js App Router application.
+- Designed production Supabase PostgreSQL schema with full DDL for `profiles`, `categories`, `albums`, `events`, `media`, and `site_settings`.
+- Defined Row Level Security (RLS) policies allowing public read of published records and role-restricted admin writes.
+- Specified Cloudinary image delivery pipeline (automatic format, quality, responsive breakpoints, and blur placeholders).
+- Defined adaptive video pipeline supporting HTML5 MP4 and HLS (`.m3u8`) streaming with automatic stream detection and Safari fallback.
+- Added free-tier risk analysis and environment variable specifications.
+
+---
+
+## [0.2.0] - 2026-11-06
+
 ### Phase 01: Requirements and Content Plan
 
 #### Added
