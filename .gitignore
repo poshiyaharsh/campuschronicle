@@ -1,0 +1,125 @@
+# ==========================================
+# CampusChronicle - Git Ignore Configuration
+# ==========================================
+
+# ------------------------------------------
+# 1. Phase Files & Internal Planning Workflows
+# (Strictly kept private & excluded from public repository)
+# ------------------------------------------
+phases/
+phases/**
+PHASES/
+PHASES/**
+*phase*
+*PHASE*
+PHASES.md
+PHASE*.md
+phases.md
+phase*.md
+PROJECT_LOG.md
+PROJECT_LOG*.md
+project_log.md
+project_log*.md
+*PROJECT_LOG*
+*project_log*
+_GLOBAL_RULES.md
+_POST_PHASE_ROUTINE.md
+/brain/
+/scratch/
+.system_generated/
+*.tmp
+*.temp
+
+# ------------------------------------------
+# 2. Environment Variables & Sensitive Secrets
+# ------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+*.p12
+*.pub
+*secret*
+*credential*
+serviceAccountKey*.json
+supabase/.temp/
+
+# ------------------------------------------
+# 3. Dependencies & Package Managers
+# ------------------------------------------
+node_modules/
+/.pnp
+.pnp.js
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# ------------------------------------------
+# 4. Production & Build Outputs
+# ------------------------------------------
+.next/
+out/
+build/
+dist/
+.vercel/
+*.tsbuildinfo
+next-env.d.ts.bak
+
+# ------------------------------------------
+# 5. Database, Local Data & Dumps
+# ------------------------------------------
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.dump
+*.sql.bak
+*.bak
+*.backup
+
+# ------------------------------------------
+# 6. Logs & Debug Artifacts
+# ------------------------------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# ------------------------------------------
+# 7. OS & Editor Metadata
+# ------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ------------------------------------------
+# 8. Testing & Coverage
+# ------------------------------------------
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+blob-report/
