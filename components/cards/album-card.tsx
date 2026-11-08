@@ -14,7 +14,7 @@ export function AlbumCard({ album }: AlbumCardProps) {
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted">
         <Image
           src={album.cover_image_url}
-          alt={album.title}
+          alt={`Cover photo for album: ${album.title}`}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"

@@ -70,6 +70,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/search" className="hover:text-primary transition-colors">
+                  Search Archives
+                </Link>
+              </li>
+              <li>
                 <Link href="/admin/login" className="hover:text-primary transition-colors">
                   Admin Portal
                 </Link>

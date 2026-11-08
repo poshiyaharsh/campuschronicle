@@ -14,7 +14,7 @@ export function EventCard({ event }: EventCardProps) {
       <div className="relative aspect-[16/9] w-full overflow-hidden bg-muted">
         <Image
           src={event.cover_image_url}
-          alt={event.title}
+          alt={`Cover image for event: ${event.title}`}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"

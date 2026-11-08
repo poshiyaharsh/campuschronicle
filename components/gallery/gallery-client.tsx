@@ -19,22 +19,42 @@ export function GalleryClient({ initialMedia, categories }: GalleryClientProps) 
   const router = useRouter();
   const searchParams = useSearchParams();
   const activeCategory = searchParams.get("category") || "all";
+  const activeYear = searchParams.get("year") || "all";
 
   const [lightboxIndex, setLightboxIndex] = React.useState(-1);
 
-  // Filter media based on active category
-  const filteredMedia = React.useMemo(() => {
-    if (activeCategory === "all") return initialMedia;
-    return initialMedia.filter((m) => m.category_slug === activeCategory);
-  }, [initialMedia, activeCategory]);
+  // Extract distinct academic years
+  const academicYears = React.useMemo(() => {
+    const years = new Set<string>();
+    initialMedia.forEach((m) => m.academic_year && years.add(m.academic_year));
+    return Array.from(years).sort().reverse();
+  }, [initialMedia]);
 
-  const handleCategoryChange = (slug: string) => {
+  // Filter media based on active category and academic year
+  const filteredMedia = React.useMemo(() => {
+    return initialMedia.filter((m) => {
+      const matchCat =
+        activeCategory === "all" || m.category_slug === activeCategory;
+      const matchYear =
+        activeYear === "all" || m.academic_year === activeYear;
+      return matchCat && matchYear;
+    });
+  }, [initialMedia, activeCategory, activeYear]);
+
+  const updateFilters = (cat: string, yr: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    if (slug === "all") {
+    if (cat === "all") {
       params.delete("category");
     } else {
-      params.set("category", slug);
+      params.set("category", cat);
     }
+
+    if (yr === "all") {
+      params.delete("year");
+    } else {
+      params.set("year", yr);
+    }
+
     const queryString = params.toString();
     router.push(queryString ? `/gallery?${queryString}` : "/gallery", {
       scroll: false,
@@ -50,52 +70,99 @@ export function GalleryClient({ initialMedia, categories }: GalleryClientProps) 
 
   return (
     <div className="space-y-8">
-      {/* Category Filter Chips */}
-      <div className="flex flex-wrap items-center gap-2 border-b border-border pb-6">
-        <button
-          onClick={() => handleCategoryChange("all")}
-          className={cn(
-            "rounded-full px-4 py-2 min-h-[44px] text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary inline-flex items-center justify-center",
-            activeCategory === "all"
-              ? "bg-primary text-primary-foreground shadow-sm"
-              : "border border-border bg-card text-muted-foreground hover:bg-secondary hover:text-foreground"
-          )}
-        >
-          All Categories ({initialMedia.length})
-        </button>
+      {/* Filters Bar: Category & Academic Year */}
+      <div className="space-y-4 border-b border-border pb-6">
+        {/* Category Filter Chips */}
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-xs font-semibold text-muted-foreground mr-1 hidden sm:inline">
+            Category:
+          </span>
+          <button
+            onClick={() => updateFilters("all", activeYear)}
+            className={cn(
+              "rounded-full px-4 py-2 min-h-[44px] text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary inline-flex items-center justify-center",
+              activeCategory === "all"
+                ? "bg-primary text-primary-foreground shadow-sm"
+                : "border border-border bg-card text-muted-foreground hover:bg-secondary hover:text-foreground"
+            )}
+          >
+            All Categories ({initialMedia.length})
+          </button>
 
-        {categories
-          .filter((c) => c.slug !== "videos")
-          .map((cat) => {
-            const count = initialMedia.filter(
-              (m) => m.category_slug === cat.slug
-            ).length;
-            const isActive = activeCategory === cat.slug;
+          {categories
+            .filter((c) => c.slug !== "videos")
+            .map((cat) => {
+              const count = initialMedia.filter(
+                (m) => m.category_slug === cat.slug
+              ).length;
+              const isActive = activeCategory === cat.slug;
 
-            return (
-              <button
-                key={cat.id}
-                onClick={() => handleCategoryChange(cat.slug)}
-                className={cn(
-                  "rounded-full px-4 py-2 min-h-[44px] text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary inline-flex items-center justify-center",
-                  isActive
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "border border-border bg-card text-muted-foreground hover:bg-secondary hover:text-foreground"
-                )}
-              >
-                {cat.name} ({count})
-              </button>
-            );
-          })}
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => updateFilters(cat.slug, activeYear)}
+                  className={cn(
+                    "rounded-full px-4 py-2 min-h-[44px] text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary inline-flex items-center justify-center",
+                    isActive
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "border border-border bg-card text-muted-foreground hover:bg-secondary hover:text-foreground"
+                  )}
+                >
+                  {cat.name} ({count})
+                </button>
+              );
+            })}
+        </div>
+
+        {/* Academic Year Filter Chips */}
+        {academicYears.length > 0 && (
+          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-border/40">
+            <span className="text-xs font-semibold text-muted-foreground mr-1 flex items-center gap-1">
+              <Calendar className="w-3.5 h-3.5 text-amber-500" />
+              Academic Year:
+            </span>
+            <button
+              onClick={() => updateFilters(activeCategory, "all")}
+              className={cn(
+                "rounded-lg px-3 py-1.5 min-h-[36px] text-xs font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+                activeYear === "all"
+                  ? "bg-amber-500 text-stone-950 font-semibold"
+                  : "bg-muted/50 text-muted-foreground hover:text-foreground"
+              )}
+            >
+              All Years
+            </button>
+            {academicYears.map((yr) => {
+              const isActive = activeYear === yr;
+              const count = initialMedia.filter(
+                (m) => m.academic_year === yr
+              ).length;
+              return (
+                <button
+                  key={yr}
+                  onClick={() => updateFilters(activeCategory, yr)}
+                  className={cn(
+                    "rounded-lg px-3 py-1.5 min-h-[36px] text-xs font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+                    isActive
+                      ? "bg-amber-500 text-stone-950 font-semibold"
+                      : "bg-muted/50 text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  {yr} ({count})
+                </button>
+              );
+            })}
+          </div>
+        )}
       </div>
 
       {/* Grid */}
       {filteredMedia.length === 0 ? (
         <EmptyState
-          title="No photos in this category"
-          description="Photos for this category will appear here once uploaded."
+          title="No photos match filters"
+          description="Try selecting a different category or academic year."
           actionHref="/gallery"
-          actionLabel="View All Photos"
+          actionLabel="Clear Filters"
         />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

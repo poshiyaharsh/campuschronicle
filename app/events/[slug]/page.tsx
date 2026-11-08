@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -7,6 +8,38 @@ import { getEventBySlug, getEvents, getMediaByEventId } from "@/lib/data/api";
 export async function generateStaticParams() {
   const events = await getEvents();
   return events.map((e) => ({ slug: e.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const event = await getEventBySlug(params.slug);
+  if (!event) return { title: "Event Not Found" };
+
+  return {
+    title: event.title,
+    description: event.summary,
+    openGraph: {
+      title: `${event.title} | CampusChronicle`,
+      description: event.summary,
+      images: [
+        {
+          url: event.cover_image_url,
+          width: 1200,
+          height: 675,
+          alt: event.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: event.title,
+      description: event.summary,
+      images: [event.cover_image_url],
+    },
+  };
 }
 
 export default async function EventDetailPage({
@@ -22,8 +55,36 @@ export default async function EventDetailPage({
 
   const attachedMedia = await getMediaByEventId(event.id);
 
+  const eventJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: event.title,
+    description: event.summary,
+    startDate: event.event_date,
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: {
+      "@type": "Place",
+      name: event.venue,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "College Campus",
+      },
+    },
+    image: [event.cover_image_url],
+    organizer: {
+      "@type": "Organization",
+      name: "Department of Information Technology",
+      url: "https://campuschronicle.vercel.app",
+    },
+  };
+
   return (
     <article className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8 space-y-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }}
+      />
       {/* Back button */}
       <div>
         <Link

@@ -1,12 +1,19 @@
+import type { Metadata } from "next";
 import { Building } from "lucide-react";
 import { getAlbums } from "@/lib/data/api";
 import { SectionHeader } from "@/components/common/section-header";
 import { AlbumCard } from "@/components/cards/album-card";
 import { EmptyState } from "@/components/common/empty-state";
 
-export const metadata = {
-  title: "Technical & Industrial Visits | CampusChronicle",
-  description: "Industry immersion tours, enterprise visits, and corporate technical sessions.",
+export const metadata: Metadata = {
+  title: "Technical & Industrial Visits",
+  description:
+    "Industry immersion tours, enterprise visits, and corporate technical sessions.",
+  openGraph: {
+    title: "Technical & Industrial Visits | CampusChronicle",
+    description:
+      "Experiential learning tours, corporate site inspections, and technology briefing sessions connecting academia with enterprise engineering.",
+  },
 };
 
 export default async function TechnicalVisitsPage() {

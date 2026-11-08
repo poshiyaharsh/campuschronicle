@@ -1,10 +1,17 @@
+import type { Metadata } from "next";
 import { Mail, MapPin, Phone, Building, Globe, ExternalLink } from "lucide-react";
 import { getSiteSettings } from "@/lib/data/api";
 import { SectionHeader } from "@/components/common/section-header";
 
-export const metadata = {
-  title: "Department Contact | CampusChronicle",
-  description: "Official contact channels, faculty office location, and institutional presence.",
+export const metadata: Metadata = {
+  title: "Department Contact & Location",
+  description:
+    "Official contact channels, faculty office location, and institutional presence.",
+  openGraph: {
+    title: "Department Contact & Location | CampusChronicle",
+    description:
+      "Connect with the Department of Information Technology faculty, administrative office, and digital community.",
+  },
 };
 
 export default async function ContactPage() {

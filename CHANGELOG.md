@@ -11,7 +11,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.10.0] - 2026-11-08
+## [0.11.0] - 2026-11-08
+
+### Phase 11: Search, Filters and SEO
+
+#### Added
+- Built dedicated search route `/search` with full-text search across albums, events, and media captions (`lib/data/api.ts`).
+- Created `components/search/search-client.tsx` with live query input, tabbed categorization (All, Albums, Events, Media), URL parameter synchronization (`?q=...`), and zero-result empty state.
+- Integrated quick search button into sticky header navigation (`Navbar`) and mobile navigation drawer.
+- Implemented Academic Year filtering on `/gallery` with interactive chips synchronized to URL search params (`?category=...&year=...`).
+- Implemented Academic Year and Event Type filtering on `/events` with `components/events/events-client.tsx`.
+- Implemented static XML sitemap generation at `/sitemap.xml` (`app/sitemap.ts`) including all core pages and dynamic event routes.
+- Implemented robots directives at `/robots.txt` (`app/robots.ts`) with admin route disallows.
+- Added Open Graph images, Twitter Cards, canonical metadata base, and keyword arrays across all routes.
+- Injected Schema.org JSON-LD structured data for `EducationalOrganization` in root layout and `Event` schema in `/events/[slug]`.
+- Conducted semantic HTML and alt-text audit across all image components, ensuring descriptive alt attributes.
 
 ### Phase 10: Admin Panel and Auth
 

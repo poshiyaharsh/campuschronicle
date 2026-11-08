@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X, Sparkles, Search } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { cn } from "@/lib/utils";
 
@@ -71,8 +71,16 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Right Actions: Theme Toggle & Mobile Menu Button */}
-        <div className="flex items-center gap-3">
+        {/* Right Actions: Search, Theme Toggle & Mobile Menu Button */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Link
+            href="/search"
+            className="inline-flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-md border border-border bg-card text-foreground hover:text-primary hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-colors"
+            aria-label="Search department archives"
+          >
+            <Search className="h-4 w-4" />
+          </Link>
+
           <ThemeToggle />
 
           {/* Mobile Menu Trigger */}
@@ -115,6 +123,18 @@ export function Navbar() {
                 </Link>
               );
             })}
+            <Link
+              href="/search"
+              className={cn(
+                "flex items-center gap-2 px-3 py-2 text-base font-medium rounded-md transition-colors",
+                pathname === "/search"
+                  ? "bg-secondary text-primary font-semibold"
+                  : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+              )}
+            >
+              <Search className="h-4 w-4" />
+              Search Archives
+            </Link>
           </nav>
         </div>
       )}

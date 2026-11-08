@@ -1,12 +1,19 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { getMedia, getCategories } from "@/lib/data/api";
 import { SectionHeader } from "@/components/common/section-header";
 import { GalleryClient } from "@/components/gallery/gallery-client";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export const metadata = {
-  title: "Media Gallery & Lightbox | CampusChronicle",
-  description: "Browse high-resolution departmental photos with category filters and interactive lightbox view.",
+export const metadata: Metadata = {
+  title: "Media Gallery & Visual Archives",
+  description:
+    "Browse high-resolution departmental photos with category and academic-year filters and interactive lightbox view.",
+  openGraph: {
+    title: "Media Gallery & Visual Archives | CampusChronicle",
+    description:
+      "Browse high-resolution departmental photos with category and academic-year filters.",
+  },
 };
 
 function GallerySkeleton() {

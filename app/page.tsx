@@ -233,7 +233,7 @@ export default async function HomePage() {
               <div className="relative aspect-video w-full overflow-hidden bg-muted">
                 <Image
                   src={album.cover_image_url}
-                  alt={album.title}
+                  alt={`Cover for ${album.title}`}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"

@@ -1,12 +1,19 @@
+import type { Metadata } from "next";
 import { Video } from "lucide-react";
 import { getMedia } from "@/lib/data/api";
 import { SectionHeader } from "@/components/common/section-header";
 import { VideoGalleryClient } from "@/components/video/video-gallery-client";
 import { EmptyState } from "@/components/common/empty-state";
 
-export const metadata = {
-  title: "Department Video Archives | CampusChronicle",
-  description: "Keynote addresses, project demonstrations, and symposium highlights streamed in MP4 and adaptive HLS.",
+export const metadata: Metadata = {
+  title: "Department Video Archives",
+  description:
+    "Keynote addresses, project demonstrations, and symposium highlights streamed in MP4 and adaptive HLS.",
+  openGraph: {
+    title: "Department Video Archives | CampusChronicle",
+    description:
+      "High-definition recordings of guest lectures, technical symposium keynotes, and student project demonstrations.",
+  },
 };
 
 export default async function VideosPage() {

@@ -86,3 +86,75 @@ export async function getMediaByEventId(eventId: string): Promise<MediaItem[]> {
 export async function getSiteSettings(): Promise<SiteSettings> {
   return SAMPLE_SITE_SETTINGS;
 }
+
+export interface SearchResults {
+  query: string;
+  albums: Album[];
+  events: EventItem[];
+  media: MediaItem[];
+  total: number;
+}
+
+export async function searchContent(query: string): Promise<SearchResults> {
+  const cleanQuery = query.trim().toLowerCase();
+  if (!cleanQuery) {
+    return {
+      query: "",
+      albums: [],
+      events: [],
+      media: [],
+      total: 0,
+    };
+  }
+
+  const terms = cleanQuery.split(/\s+/).filter(Boolean);
+
+  const matchesText = (text?: string): boolean => {
+    if (!text) return false;
+    const lower = text.toLowerCase();
+    return terms.some((term) => lower.includes(term));
+  };
+
+  const albums = SAMPLE_ALBUMS.filter(
+    (a) =>
+      matchesText(a.title) ||
+      matchesText(a.description) ||
+      matchesText(a.category_slug) ||
+      matchesText(a.academic_year)
+  );
+
+  const events = SAMPLE_EVENTS.filter(
+    (e) =>
+      matchesText(e.title) ||
+      matchesText(e.summary) ||
+      matchesText(e.description) ||
+      matchesText(e.category) ||
+      matchesText(e.venue) ||
+      matchesText(e.academic_year)
+  );
+
+  const media = SAMPLE_MEDIA.filter(
+    (m) =>
+      matchesText(m.title) ||
+      matchesText(m.caption) ||
+      matchesText(m.alt_text) ||
+      matchesText(m.category_slug) ||
+      matchesText(m.academic_year)
+  );
+
+  return {
+    query,
+    albums,
+    events,
+    media,
+    total: albums.length + events.length + media.length,
+  };
+}
+
+export async function getAcademicYears(): Promise<string[]> {
+  const years = new Set<string>();
+  SAMPLE_ALBUMS.forEach((a) => a.academic_year && years.add(a.academic_year));
+  SAMPLE_EVENTS.forEach((e) => e.academic_year && years.add(e.academic_year));
+  SAMPLE_MEDIA.forEach((m) => m.academic_year && years.add(m.academic_year));
+  return Array.from(years).sort().reverse();
+}
