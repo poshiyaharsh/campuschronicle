@@ -1,29 +1,48 @@
-import { Image as ImageIcon } from "lucide-react";
+import { Suspense } from "react";
+import { getMedia, getCategories } from "@/lib/data/api";
+import { SectionHeader } from "@/components/common/section-header";
+import { GalleryClient } from "@/components/gallery/gallery-client";
+import { Skeleton } from "@/components/ui/skeleton";
 
-export default function GalleryPage() {
+export const metadata = {
+  title: "Media Gallery & Lightbox | CampusChronicle",
+  description: "Browse high-resolution departmental photos with category filters and interactive lightbox view.",
+};
+
+function GallerySkeleton() {
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-y-8">
-      <div className="space-y-2 border-b border-border pb-6">
-        <div className="inline-flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-wider">
-          <ImageIcon className="h-4 w-4" />
-          <span>Curated Media Archives</span>
-        </div>
-        <h1 className="text-3xl font-bold tracking-tight text-foreground font-display">
-          Photo Gallery
-        </h1>
-        <p className="text-muted-foreground text-sm sm:text-base max-w-2xl">
-          Filterable visual archive of all departmental moments with full-screen lightbox preview.
-        </p>
+    <div className="space-y-8">
+      <div className="flex gap-2 pb-6 border-b border-border">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <Skeleton key={i} className="h-8 w-28 rounded-full" />
+        ))}
       </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <Skeleton key={i} className="aspect-[4/3] w-full rounded-xl" />
+        ))}
+      </div>
+    </div>
+  );
+}
 
-      <div className="rounded-xl border border-dashed border-border bg-card/40 p-12 text-center space-y-3">
-        <p className="text-sm font-medium text-muted-foreground">
-          [Phase 07 Implementation Target: Masonry Gallery & Lightbox]
-        </p>
-        <p className="text-xs text-muted-foreground">
-          Dynamic category filters (Classroom, Visits, Events), masonry grid, and yet-another-react-lightbox integration.
-        </p>
-      </div>
+export default async function GalleryPage() {
+  const [mediaItems, categories] = await Promise.all([
+    getMedia({ mediaType: "image" }),
+    getCategories(),
+  ]);
+
+  return (
+    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-y-10">
+      <SectionHeader
+        badge="Visual Archives"
+        title="Department Photo Gallery"
+        description="Filterable photo records capturing practical lab sessions, technical tours, coding marathons, and department celebrations."
+      />
+
+      <Suspense fallback={<GallerySkeleton />}>
+        <GalleryClient initialMedia={mediaItems} categories={categories} />
+      </Suspense>
     </div>
   );
 }

@@ -9,6 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - 2026-11-08
 
+### Phase 07: Photo Gallery and Lightbox
+
+#### Added
+- Implemented `/gallery` route with high-performance responsive masonry photo grid.
+- Built `components/gallery/gallery-client.tsx`:
+  - Filter chips with category item counters.
+  - URL-synchronized state management (`?category=classroom`, `?category=visits`, etc.).
+  - Full-featured modal lightbox using `yet-another-react-lightbox` supporting keyboard navigation (Escape, Left/Right arrows), touch gestures, and focus trapping.
+  - Aspect ratio locking (`aspect-[4/3]`) preventing layout shift (CLS).
+  - Subtle hover zoom and overlay metadata (tags, academic year, caption).
+- Installed and integrated `yet-another-react-lightbox`.
+
+---
+
+## [0.7.0] - 2026-11-08
+
 ### Phase 06: Core Pages Implementation
 
 #### Added
