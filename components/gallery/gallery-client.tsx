@@ -55,7 +55,7 @@ export function GalleryClient({ initialMedia, categories }: GalleryClientProps) 
         <button
           onClick={() => handleCategoryChange("all")}
           className={cn(
-            "rounded-full px-4 py-1.5 text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+            "rounded-full px-4 py-2 min-h-[44px] text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary inline-flex items-center justify-center",
             activeCategory === "all"
               ? "bg-primary text-primary-foreground shadow-sm"
               : "border border-border bg-card text-muted-foreground hover:bg-secondary hover:text-foreground"
@@ -77,7 +77,7 @@ export function GalleryClient({ initialMedia, categories }: GalleryClientProps) 
                 key={cat.id}
                 onClick={() => handleCategoryChange(cat.slug)}
                 className={cn(
-                  "rounded-full px-4 py-1.5 text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+                  "rounded-full px-4 py-2 min-h-[44px] text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary inline-flex items-center justify-center",
                   isActive
                     ? "bg-primary text-primary-foreground shadow-sm"
                     : "border border-border bg-card text-muted-foreground hover:bg-secondary hover:text-foreground"

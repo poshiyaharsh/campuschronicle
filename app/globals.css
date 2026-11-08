@@ -72,8 +72,11 @@
   * {
     @apply border-border;
   }
+  html {
+    @apply overflow-x-hidden scroll-smooth;
+  }
   body {
-    @apply bg-background text-foreground font-sans antialiased selection:bg-primary/20 selection:text-primary;
+    @apply bg-background text-foreground font-sans antialiased overflow-x-hidden selection:bg-primary/20 selection:text-primary;
   }
 }
 
