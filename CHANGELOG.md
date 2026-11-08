@@ -7,17 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [Unreleased] - 2026-11-08
+## [Unreleased]
 
-### Phase 09: Theme & Responsive Pass
+---
+
+## [0.10.0] - 2026-11-08
+
+### Phase 10: Admin Panel and Auth
 
 #### Added
-- Conducted full cross-device responsive inspection across 360px, 390px, 768px, 1024px, 1440px, and 1920px viewports.
-- Standardized touch target dimensions to ≥ 44x44px for mobile devices on `ThemeToggle`, mobile navbar toggle, and gallery filter chips.
-- Enforced strict horizontal overflow prevention (`overflow-x-hidden`) in `app/globals.css`.
-- Verified visible keyboard focus rings across all navigation links, buttons, cards, and modal triggers.
-- Verified zero theme flicker / flash on first load (FOUC).
-- Documented full quality assurance matrix in `docs/QA_THEME_RESPONSIVE.md`.
+- Installed `zod` for strict schema validation across admin forms.
+- Created `lib/validations/admin.ts` with schemas for login, albums, events, media, and site settings.
+- Created Next.js edge middleware `middleware.ts` safeguarding `/admin/*` routes from unauthorized access.
+- Built `/admin/login` page with authentication feedback, session cookie management, and redirection handling.
+- Built `/admin` layout console shell (`app/admin/layout.tsx`) featuring tabbed navigation and secure session logout.
+- Built `/admin` dashboard overview (`app/admin/page.tsx`) with key metrics (albums, photos, videos, events) and quick actions.
+- Built `/admin/media` (`app/admin/media/page.tsx`) supporting simulated multi-file photo uploads with progress indicators, caption editing, category assignments, and MP4/HLS video stream registration.
+- Built `/admin/albums` (`app/admin/albums/page.tsx`) for creating new albums, toggling publish/draft states, and deletion.
+- Built `/admin/events` (`app/admin/events/page.tsx`) for event authoring, featured badges, publish status toggling, and management.
+- Built `/admin/settings` (`app/admin/settings/page.tsx`) for live editing of department contact details, office room, and verified social media links.
+- Created comprehensive, non-technical faculty user guide `docs/ADMIN_GUIDE.md`.
 
 ---
 
