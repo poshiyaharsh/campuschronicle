@@ -7,11 +7,15 @@
 *A modern digital memory, event showcase, and media archiving platform for collegiate Information Technology departments.*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI Status](https://github.com/poshiyaharsh/campuschronicle/actions/workflows/ci.yml/badge.svg)](https://github.com/poshiyaharsh/campuschronicle/actions)
+[![Deployment: Vercel](https://img.shields.io/badge/Deployment-Vercel-black.svg?style=flat&logo=vercel)](https://campuschronicle.vercel.app)
 [![Framework: Next.js](https://img.shields.io/badge/Framework-Next.js%20(App%20Router)-black.svg?style=flat&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/Language-TypeScript-blue.svg?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Styling: Tailwind CSS](https://img.shields.io/badge/Styling-Tailwind%20CSS-38bdf8.svg?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
 [![Database: Supabase](https://img.shields.io/badge/Database-Supabase%20(PostgreSQL)-3ecf8e.svg?style=flat&logo=supabase)](https://supabase.com/)
 [![Media: Cloudinary](https://img.shields.io/badge/Media-Cloudinary-3448c5.svg?style=flat&logo=cloudinary)](https://cloudinary.com/)
+
+**Live Production URL:** [https://campuschronicle.vercel.app](https://campuschronicle.vercel.app)
 
 </div>
 
@@ -109,6 +113,12 @@ npm run typecheck
 # Run Next.js / ESLint linter
 npm run lint
 
+# Run Vitest unit tests
+npm test
+
+# Run Playwright end-to-end tests
+npm run test:e2e
+
 # Build production bundle
 npm run build
 
@@ -116,6 +126,21 @@ npm run build
 npm start
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+
+---
+
+## 📚 Project Documentation
+
+Comprehensive documentation guides are available in the `/docs` directory:
+
+- [Deployment Guide](docs/DEPLOYMENT.md) - Complete Vercel, Supabase, and custom domain setup with rollback plan.
+- [Faculty & Admin Guide](docs/ADMIN_GUIDE.md) - Plain-language instructions for college faculty on media uploads, events, and site settings.
+- [Testing & QA Guide](docs/TESTING.md) - Details on Vitest unit tests, Playwright E2E suites, and manual QA checklists.
+- [Security Architecture](docs/SECURITY.md) - RLS matrices, Content-Security-Policy headers, and vulnerability audit notes.
+- [Performance & Web Vitals](docs/QA_PERFORMANCE.md) - Core Web Vitals audit, image optimization, and Lighthouse scores.
+- [Accessibility (a11y) Report](docs/QA_ACCESSIBILITY.md) - WCAG 2.1 AA/AAA compliance matrices and screen-reader semantics.
+- [System Architecture](docs/ARCHITECTURE.md) - Next.js App Router design, Supabase schema DDL, and data flow diagrams.
+- [Design System](docs/DESIGN.md) - Black & Gold color tokens, typography scales, and component wireframes.
 
 ---
 

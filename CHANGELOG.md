@@ -11,7 +11,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.13.0] - 2026-11-08
+## [0.14.0] - 2026-11-08
+
+### Phase 14: Deployment to Production
+
+#### Added
+- Authored production deployment playbook in `docs/DEPLOYMENT.md`:
+  - Complete environment variables specification table with public vs secret classifications.
+  - Step-by-step Supabase production database setup, SQL migrations, RLS activation, storage bucket provisioning, and faculty role elevation.
+  - Vercel deployment procedures, branch settings, and custom institutional domain CNAME/A record setup.
+  - Post-deployment smoke test verification matrix.
+  - Instant rollback instructions for zero-downtime recovery via Vercel deployment promotion and Supabase snapshot restores.
+- Updated root `README.md` with CI status badges, Vercel deployment badge, live URL (`https://campuschronicle.vercel.app`), updated test scripts, and documentation directory index.
 
 ### Phase 13: Performance, Security and Accessibility Hardening
 
