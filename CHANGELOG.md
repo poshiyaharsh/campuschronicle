@@ -7,7 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [Unreleased] - 2026-11-06
+## [Unreleased] - 2026-11-08
+
+### Phase 03: Design System and UI/UX Plan
+
+#### Added
+- Authored `docs/DESIGN.md` establishing the design system for CampusChronicle.
+- Defined Black & Gold color token system for Light and Dark modes with HSL and CSS variable definitions.
+- Completed WCAG 2.1 AA/AAA contrast verification matrix ensuring high legibility.
+- Established typography scale, font pairings, spacing, border radii, shadows, and glassmorphism standards.
+- Cataloged component inventory and interactive states for core components.
+- Outlined responsive layout breakpoints and motion safety rules (`prefers-reduced-motion`).
+- Created ASCII wireframes for Home, Gallery, Videos, and Contact pages.
+- Included production-ready Tailwind CSS configuration extension and CSS variables block.
+
+---
+
+## [0.3.0] - 2026-11-06
 
 ### Phase 02: Architecture and Data Model
 
