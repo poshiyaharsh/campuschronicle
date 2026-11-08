@@ -11,7 +11,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.12.0] - 2026-11-08
+## [0.13.0] - 2026-11-08
+
+### Phase 13: Performance, Security and Accessibility Hardening
+
+#### Added
+- Added comprehensive security headers in `next.config.mjs`:
+  - `Content-Security-Policy` tuned for Supabase, Cloudinary, Plyr, Mux, and Unsplash.
+  - `Strict-Transport-Security` (HSTS with 2-year max-age and preload).
+  - `X-Content-Type-Options: nosniff`.
+  - `X-Frame-Options: DENY` (clickjacking defense).
+  - `Referrer-Policy: strict-origin-when-cross-origin`.
+  - `Permissions-Policy` disabling camera, microphone, and geolocation.
+- Added accessibility skip-to-content link in `app/layout.tsx` targeting `<main id="main-content">`.
+- Enabled next-gen image formats (`image/avif`, `image/webp`) in Next.js configuration.
+- Audited repository and commit history, confirming zero exposure of Supabase service role keys or real secrets.
+- Completed comprehensive performance analysis and Core Web Vitals audit in `docs/QA_PERFORMANCE.md`.
+- Completed security architecture documentation and RLS role matrix in `docs/SECURITY.md`.
+- Completed WCAG 2.1 AA/AAA contrast and keyboard traversal audit in `docs/QA_ACCESSIBILITY.md`.
 
 ### Phase 12: Automated Testing and CI
 
