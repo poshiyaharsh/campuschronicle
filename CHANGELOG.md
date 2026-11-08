@@ -7,7 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [Unreleased]
+## [1.0.0] - 2026-11-08
+
+### Phase 15: Handover and Documentation
+
+#### Added
+- Formal release `v1.0.0` marking the completion of the 16-phase modernization of CampusChronicle.
+- Authored `docs/MAINTENANCE.md` covering free-tier threshold monitoring, PostgreSQL backup and restore commands, key rotation procedures, and annual academic year rollover checklist.
+- Authored `CONTRIBUTING.md` defining code of conduct, development setup, pull request quality criteria, and conventional commit guidelines.
+- Added MIT `LICENSE` file.
+- Audited all remaining `TODO_VERIFY` placeholders across codebase and verified zero invented data.
+- Completed comprehensive verification of faculty `docs/ADMIN_GUIDE.md` against live admin console workflows.
+- Completed full audit of root `README.md`, developer scripts, and documentation index.
 
 ---
 
