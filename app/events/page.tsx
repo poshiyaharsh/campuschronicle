@@ -1,38 +1,39 @@
-import Link from "next/link";
 import { Calendar } from "lucide-react";
+import { getEvents } from "@/lib/data/api";
+import { SectionHeader } from "@/components/common/section-header";
+import { EventCard } from "@/components/cards/event-card";
+import { EmptyState } from "@/components/common/empty-state";
 
-export default function EventsPage() {
+export const metadata = {
+  title: "IT Events & Hackathons | CampusChronicle",
+  description: "Chronicles of hackathons, symposiums, tech fests, and student competitions.",
+};
+
+export default async function EventsPage() {
+  const events = await getEvents();
+
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-y-8">
-      <div className="space-y-2 border-b border-border pb-6">
-        <div className="inline-flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-wider">
-          <Calendar className="h-4 w-4" />
-          <span>Department Milestones</span>
-        </div>
-        <h1 className="text-3xl font-bold tracking-tight text-foreground font-display">
-          IT Events & Highlights
-        </h1>
-        <p className="text-muted-foreground text-sm sm:text-base max-w-2xl">
-          Archives of hackathons, symposiums, technical paper presentations, and department tech celebrations.
-        </p>
-      </div>
+    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-y-10">
+      <SectionHeader
+        badge="Department Milestones"
+        title="IT Events & Tech Celebrations"
+        description="Comprehensive records of student hackathons, national technical symposiums, research paper tracks, and developer boot camps."
+      />
 
-      <div className="rounded-xl border border-dashed border-border bg-card/40 p-12 text-center space-y-3">
-        <p className="text-sm font-medium text-muted-foreground">
-          [Phase 06 Implementation Target]
-        </p>
-        <p className="text-xs text-muted-foreground">
-          Events directory with academic-year filters and dedicated event detail pages.
-        </p>
-        <div className="pt-2">
-          <Link
-            href="/events/sample-event"
-            className="text-xs text-primary underline underline-offset-4 hover:text-primary/80"
-          >
-            Preview Event Detail Shell (/events/sample-event)
-          </Link>
+      {events.length === 0 ? (
+        <EmptyState
+          title="No events published yet"
+          description="Check back soon as department milestone events are posted."
+          actionHref="/"
+          actionLabel="Return Home"
+        />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {events.map((event) => (
+            <EventCard key={event.id} event={event} />
+          ))}
         </div>
-      </div>
+      )}
     </div>
   );
 }

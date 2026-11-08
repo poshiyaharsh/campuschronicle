@@ -1,29 +1,39 @@
 import { Building } from "lucide-react";
+import { getAlbums } from "@/lib/data/api";
+import { SectionHeader } from "@/components/common/section-header";
+import { AlbumCard } from "@/components/cards/album-card";
+import { EmptyState } from "@/components/common/empty-state";
 
-export default function TechnicalVisitsPage() {
+export const metadata = {
+  title: "Technical & Industrial Visits | CampusChronicle",
+  description: "Industry immersion tours, enterprise visits, and corporate technical sessions.",
+};
+
+export default async function TechnicalVisitsPage() {
+  const albums = await getAlbums("technical-visits");
+
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-y-8">
-      <div className="space-y-2 border-b border-border pb-6">
-        <div className="inline-flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-wider">
-          <Building className="h-4 w-4" />
-          <span>Industry Immersion</span>
-        </div>
-        <h1 className="text-3xl font-bold tracking-tight text-foreground font-display">
-          Technical & Industrial Visits
-        </h1>
-        <p className="text-muted-foreground text-sm sm:text-base max-w-2xl">
-          Immersion tours, corporate site visits, and industry exposure programs connecting students with real-world engineering.
-        </p>
-      </div>
+    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-y-10">
+      <SectionHeader
+        badge="Industry Immersion"
+        title="Technical & Industrial Visits"
+        description="Experiential learning tours, corporate site inspections, and technology briefing sessions connecting academia with enterprise engineering."
+      />
 
-      <div className="rounded-xl border border-dashed border-border bg-card/40 p-12 text-center space-y-3">
-        <p className="text-sm font-medium text-muted-foreground">
-          [Phase 06 Implementation Target]
-        </p>
-        <p className="text-xs text-muted-foreground">
-          Technical visit reports and company photo galleries will be rendered dynamically from the database.
-        </p>
-      </div>
+      {albums.length === 0 ? (
+        <EmptyState
+          title="No technical visits recorded"
+          description="Industrial and technical visit photo journals will be published here."
+          actionHref="/"
+          actionLabel="Return Home"
+        />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {albums.map((album) => (
+            <AlbumCard key={album.id} album={album} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

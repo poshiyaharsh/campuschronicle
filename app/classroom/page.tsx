@@ -1,29 +1,39 @@
 import { BookOpen } from "lucide-react";
+import { getAlbums } from "@/lib/data/api";
+import { SectionHeader } from "@/components/common/section-header";
+import { AlbumCard } from "@/components/cards/album-card";
+import { EmptyState } from "@/components/common/empty-state";
 
-export default function ClassroomPage() {
+export const metadata = {
+  title: "Classroom Activities | CampusChronicle",
+  description: "Chronicle of practical lab experiments, technical presentations, and interactive classroom sessions.",
+};
+
+export default async function ClassroomPage() {
+  const albums = await getAlbums("classroom");
+
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-y-8">
-      <div className="space-y-2 border-b border-border pb-6">
-        <div className="inline-flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-wider">
-          <BookOpen className="h-4 w-4" />
-          <span>Curriculum & Practical Sessions</span>
-        </div>
-        <h1 className="text-3xl font-bold tracking-tight text-foreground font-display">
-          Classroom Activities
-        </h1>
-        <p className="text-muted-foreground text-sm sm:text-base max-w-2xl">
-          Visual documentation of practical lab experiments, technical presentations, and interactive classroom sessions.
-        </p>
-      </div>
+    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-y-10">
+      <SectionHeader
+        badge="Curriculum Practical Labs"
+        title="Classroom Activities"
+        description="Comprehensive photo logs of practical programming laboratories, technical presentations, and hands-on workshops."
+      />
 
-      <div className="rounded-xl border border-dashed border-border bg-card/40 p-12 text-center space-y-3">
-        <p className="text-sm font-medium text-muted-foreground">
-          [Phase 06 Implementation Target]
-        </p>
-        <p className="text-xs text-muted-foreground">
-          Classroom activity albums will be dynamically populated from Supabase after Media Import (Phase 05).
-        </p>
-      </div>
+      {albums.length === 0 ? (
+        <EmptyState
+          title="No classroom albums found"
+          description="Classroom activity albums will be added here once published."
+          actionHref="/"
+          actionLabel="Return Home"
+        />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {albums.map((album) => (
+            <AlbumCard key={album.id} album={album} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

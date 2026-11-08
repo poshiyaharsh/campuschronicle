@@ -9,6 +9,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - 2026-11-08
 
+### Phase 06: Core Pages Implementation
+
+#### Added
+- Implemented **Home Page (`/`)**:
+  - Hero section with department branding, tagline, and primary/secondary CTAs.
+  - Department ethos & welcome card with stats indicators.
+  - Interactive grid linking to all 5 department pillars.
+  - Featured Events & Hackathons spotlight and recent photo albums showcase.
+- Implemented **Classroom Activities (`/classroom`)**:
+  - Album grid showing lab sessions, cover images, photo counts, dates, and empty-state fallback.
+- Implemented **Technical Visits (`/technical-visits`)**:
+  - Showcase for corporate immersion tours and data center visits.
+- Implemented **IT Events & Highlights (`/events`)**:
+  - Structured event card grid displaying dates, venue, summaries, and category badges.
+- Implemented **Event Detail Page (`/events/[slug]`)**:
+  - Dynamic SSG routes (`/events/innovatex-hackathon-2024`, etc.) with cover image, narrative story, key highlights checklist, and attached photo reel.
+- Implemented **Department Contact (`/contact`)**:
+  - Dynamic contact card powered by `site_settings`, showing verified fields (address, email, phone, social links) and hiding unprovided ones.
+- Implemented **Skeleton Loaders & UX Components**:
+  - `components/common/section-header.tsx`
+  - `components/common/empty-state.tsx`
+  - `components/cards/album-card.tsx`
+  - `components/cards/event-card.tsx`
+  - `components/ui/skeleton.tsx`
+  - `app/loading.tsx`, `app/classroom/loading.tsx`, `app/events/loading.tsx`.
+- Verified production build generating 14/14 static and SSG pages.
+
+---
+
+## [0.6.0] - 2026-11-08
+
 ### Phase 05: Media Import & Database Foundation
 
 #### Added
