@@ -11,7 +11,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.11.0] - 2026-11-08
+## [0.12.0] - 2026-11-08
+
+### Phase 12: Automated Testing and CI
+
+#### Added
+- Installed and configured `vitest` with path alias support (`vitest.config.ts`).
+- Created unit test suite in `tests/unit/pure-logic.test.ts` covering:
+  - Video stream type detection (HLS `.m3u8` playlists vs MP4 files).
+  - Slug generation and string sanitization.
+  - Zod validation schemas (`loginSchema`, `albumSchema`, `eventSchema`, `mediaSchema`, `siteSettingsSchema`).
+  - Search engine keyword matching, multi-term queries, and academic year extraction.
+- Configured Playwright end-to-end test framework (`playwright.config.ts`) with desktop Chromium and mobile Pixel emulation.
+- Created comprehensive E2E test suite in `tests/e2e/campuschronicle.spec.ts` covering navigation, 404 status, theme toggle persistence, filter URL synchronization, lightbox modal lifecycle, video player availability, search empty states, and server-side admin authentication redirects.
+- Configured GitHub Actions continuous integration workflow (`.github/workflows/ci.yml`) automating dependencies installation, linting, typechecking, unit tests, Next.js build, and Playwright execution.
+- Added GitHub templates: `.github/pull_request_template.md`, `.github/ISSUE_TEMPLATE/bug_report.md`, and `.github/ISSUE_TEMPLATE/feature_request.md`.
+- Authored comprehensive testing and QA documentation in `docs/TESTING.md`.
 
 ### Phase 11: Search, Filters and SEO
 
