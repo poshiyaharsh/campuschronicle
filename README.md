@@ -98,9 +98,22 @@ Fill in your Supabase project credentials and Cloudinary API configuration in `.
 npm install
 ```
 
-### 4. Run Development Server
+### 4. Available Scripts
 ```bash
+# Run local development server
 npm run dev
+
+# Run TypeScript type check
+npm run typecheck
+
+# Run Next.js / ESLint linter
+npm run lint
+
+# Build production bundle
+npm run build
+
+# Start production server
+npm start
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 

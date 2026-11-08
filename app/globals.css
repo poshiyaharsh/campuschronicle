@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 98.4%;
+    --foreground: 220 15% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 8%;
+
+    /* Premium Gold */
+    --primary: 43 89% 38%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 228 15% 95%;
+    --secondary-foreground: 220 15% 8%;
+
+    --muted: 240 5% 94%;
+    --muted-foreground: 218 10% 43%;
+
+    --accent: 43 78% 92%;
+    --accent-foreground: 43 89% 30%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 90%;
+    --input: 220 13% 90%;
+    --ring: 43 89% 38%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 225 25% 4.3%;
+    --foreground: 220 20% 97%;
+
+    --card: 220 18% 8%;
+    --card-foreground: 220 20% 97%;
+
+    --popover: 220 18% 8%;
+    --popover-foreground: 220 20% 97%;
+
+    /* Bright Radiant Gold */
+    --primary: 43 78% 58%;
+    --primary-foreground: 225 25% 4.3%;
+
+    --secondary: 223 20% 15%;
+    --secondary-foreground: 220 20% 97%;
+
+    --muted: 223 18% 12%;
+    --muted-foreground: 220 12% 66%;
+
+    --accent: 43 60% 18%;
+    --accent-foreground: 43 78% 65%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 225 18% 18%;
+    --input: 225 18% 18%;
+    --ring: 43 78% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased selection:bg-primary/20 selection:text-primary;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -9,6 +9,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - 2026-11-08
 
+### Phase 04: Project Scaffold
+
+#### Added
+- Initialized Next.js App Router application with TypeScript and Tailwind CSS.
+- Applied Black & Gold color design tokens and CSS variables to `app/globals.css` and `tailwind.config.ts`.
+- Configured `ThemeProvider` (`next-themes`) with system, light, and dark mode support with zero FOUC.
+- Built accessible, responsive app shell with sticky `Navbar`, mobile drawer, and `Footer`.
+- Built interactive `ThemeToggle` with smooth icons and persistent local storage state.
+- Scaffolded route structure with placeholder views:
+  - `/` (Home with hero section & featured module cards)
+  - `/classroom` (Classroom activities placeholder)
+  - `/technical-visits` (Industrial visits placeholder)
+  - `/events` & `/events/[slug]` (IT events directory and detail route)
+  - `/gallery` (Photo gallery placeholder)
+  - `/videos` (Video gallery placeholder)
+  - `/contact` (Department contact card & map preview)
+  - `/admin/login` (Admin auth portal view)
+  - `/_not-found` & `/error` (Custom 404 & error boundary)
+- Verified build and typecheck with `npm run lint`, `npm run typecheck`, `npm run build`, and `npm run dev` (HTTP 200).
+
+---
+
+## [0.4.0] - 2026-11-08
+
 ### Phase 03: Design System and UI/UX Plan
 
 #### Added
