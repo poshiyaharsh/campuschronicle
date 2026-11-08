@@ -9,6 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - 2026-11-08
 
+### Phase 05: Media Import & Database Foundation
+
+#### Added
+- Created Supabase PostgreSQL migration files:
+  - `supabase/migrations/20261108000000_init_schema.sql` (schema, enums, tables, triggers, indexes).
+  - `supabase/migrations/20261108000001_rls_policies.sql` (Row Level Security policies).
+- Authored media migration utility `scripts/migrate-media.ts` supporting dry-run inspection and live upload with filename sanitization.
+- Established mock seed database at `lib/data/mock-data.ts` and runner `scripts/seed-sample-data.ts` with labeled `TODO_VERIFY` placeholders.
+- Authored `scripts/verify-media-urls.ts` and verified 100% (8/8) reachable media URLs.
+- Documented ingestion results in `docs/MIGRATION_REPORT.md`.
+
+---
+
+## [0.5.0] - 2026-11-08
+
 ### Phase 04: Project Scaffold
 
 #### Added
