@@ -1,29 +1,35 @@
 import { Video } from "lucide-react";
+import { getMedia } from "@/lib/data/api";
+import { SectionHeader } from "@/components/common/section-header";
+import { VideoGalleryClient } from "@/components/video/video-gallery-client";
+import { EmptyState } from "@/components/common/empty-state";
 
-export default function VideosPage() {
+export const metadata = {
+  title: "Department Video Archives | CampusChronicle",
+  description: "Keynote addresses, project demonstrations, and symposium highlights streamed in MP4 and adaptive HLS.",
+};
+
+export default async function VideosPage() {
+  const videos = await getMedia({ mediaType: "video" });
+
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-y-8">
-      <div className="space-y-2 border-b border-border pb-6">
-        <div className="inline-flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-wider">
-          <Video className="h-4 w-4" />
-          <span>Stream Archives</span>
-        </div>
-        <h1 className="text-3xl font-bold tracking-tight text-foreground font-display">
-          Video Gallery
-        </h1>
-        <p className="text-muted-foreground text-sm sm:text-base max-w-2xl">
-          High-definition recordings, symposium keynotes, and student project demonstrations with adaptive MP4 & HLS streaming.
-        </p>
-      </div>
+    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-y-10">
+      <SectionHeader
+        badge="Streaming Archives"
+        title="Department Video Gallery"
+        description="High-definition recordings of guest lectures, technical symposium keynotes, and student project demonstrations with adaptive MP4 & HLS streaming."
+      />
 
-      <div className="rounded-xl border border-dashed border-border bg-card/40 p-12 text-center space-y-3">
-        <p className="text-sm font-medium text-muted-foreground">
-          [Phase 08 Implementation Target: Adaptive Video Player]
-        </p>
-        <p className="text-xs text-muted-foreground">
-          HTML5 MP4 and HLS.js adaptive player with keyboard controls, quality selector, and custom styling.
-        </p>
-      </div>
+      {videos.length === 0 ? (
+        <EmptyState
+          title="No video recordings available"
+          description="Department video streams and MP4 recordings will be posted here."
+          actionHref="/"
+          actionLabel="Return Home"
+        />
+      ) : (
+        <VideoGalleryClient videos={videos} />
+      )}
     </div>
   );
 }

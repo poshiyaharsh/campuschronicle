@@ -9,6 +9,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - 2026-11-08
 
+### Phase 08: Video Gallery & Adaptive Streaming
+
+#### Added
+- Implemented `/videos` route showcasing department video logs and keynote addresses.
+- Installed `hls.js` for adaptive bitrate video streaming.
+- Built `components/video/video-player.tsx`:
+  - Automatic stream detection (HLS `.m3u8` vs standard MP4).
+  - Native Safari HLS fallback support.
+  - Black & gold custom controls: play/pause, seek scrubber, volume slider, fullscreen, and playback rate selector (0.75x–2.0x).
+  - Complete keyboard navigation (Space, K, M, F, Left/Right arrow keys).
+  - Playback error state handling with instant retry button.
+  - Clean `hls.destroy()` unmount lifecycle prevention of memory leaks.
+- Built `components/video/video-card.tsx` with thumbnail, duration badge, stream type pill, and active playback indicator.
+- Built `components/video/video-gallery-client.tsx` with dynamic lazy-loaded player and interactive playlist selection.
+
+---
+
+## [0.8.0] - 2026-11-08
+
 ### Phase 07: Photo Gallery and Lightbox
 
 #### Added
